@@ -20,15 +20,15 @@ export class TodosService {
         } as Todo;
     }
 
-    async updateTodo(todo: Todo): Promise<Todo> {
-        await sleep(1000);
-        const index = TODOS.findIndex(t => t.id === todo.id);
-        TODOS[index] = todo;
-        return todo;
+    async updateTodo(id: string, completed: boolean): Promise<Todo> {
+        await sleep(500);
+        const todo = TODOS.find(t => t.id === id);
+        todo!.completed = completed;
+        return todo!;    
     }
 
     async deleteTodoById(id: string): Promise<void> {
-        await sleep(1000);
+        await sleep(500);
         const index = TODOS.findIndex(t => t.id === id);
         TODOS.splice(index, 1);
     }

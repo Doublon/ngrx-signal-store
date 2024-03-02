@@ -24,4 +24,8 @@ export class TodosListComponent {
     event.stopPropagation();
     await this.store.delete(todo);
   }
+
+  async onTodoToggled(id: string, completed: boolean) {
+    await this.store.update(id, completed);    
+  }
 }
