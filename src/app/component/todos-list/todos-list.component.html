@@ -1,7 +1,7 @@
 <h1>NgRx Signal Store Todo App</h1>
 <mat-form-field class="todo-input">
     <mat-label>Enter a TODO and press ENTER</mat-label>
-    <input matInput #input>
+    <input matInput #input (keyup.enter)="onAddTodo(input.value)">
     <mat-icon matSuffix>edit</mat-icon>
 </mat-form-field>
 <mat-button-toggle-group #filter>

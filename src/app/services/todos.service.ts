@@ -10,6 +10,15 @@ export class TodosService {
         await sleep(1000);
         return TODOS;
     }
+
+    async addTodo(todo: Partial<Todo>): Promise<Todo> {
+        await sleep(1000);
+        // TODOS.push(todo);
+        return {
+            id: Math.random().toString(36).substr(2, 9),
+            ...todo
+        } as Todo;
+    }
 }
 
 async function sleep(ms: number) {
