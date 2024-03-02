@@ -14,7 +14,7 @@
     @for (todo of store.todos(); track todo.id) {
         <mat-list-option>
             <div class="todo-item">
-                <mat-icon>delete</mat-icon>
+                <mat-icon class="delete-todo" (click)="onDeleteTodo(todo.id, $event)">delete</mat-icon>
                 <span>{{todo.title}}</span>
             </div>
         </mat-list-option>

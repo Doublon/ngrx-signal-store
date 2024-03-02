@@ -19,6 +19,19 @@ export class TodosService {
             ...todo
         } as Todo;
     }
+
+    async updateTodo(todo: Todo): Promise<Todo> {
+        await sleep(1000);
+        const index = TODOS.findIndex(t => t.id === todo.id);
+        TODOS[index] = todo;
+        return todo;
+    }
+
+    async deleteTodoById(id: string): Promise<void> {
+        await sleep(1000);
+        const index = TODOS.findIndex(t => t.id === id);
+        TODOS.splice(index, 1);
+    }
 }
 
 async function sleep(ms: number) {
