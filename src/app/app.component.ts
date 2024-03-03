@@ -12,17 +12,6 @@ import {MatSpinner} from '@angular/material/progress-spinner';
     styleUrl: './app.component.scss',
     imports: [CommonModule, RouterOutlet, TodosListComponent, MatSpinner]
 })
-export class AppComponent implements OnInit {
-
+export class AppComponent {
   store = inject(TodosStore);
-
-  ngOnInit() {
-    this.loadAll().then(  
-      () => console.log('Todos loaded')
-    );
-  }
-
-  private async loadAll() {
-    await this.store.loadAll();
-  }
 }

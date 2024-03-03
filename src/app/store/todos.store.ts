@@ -1,6 +1,6 @@
 import { computed, inject } from "@angular/core";
 import { Todo } from "../model/todo.model";
-import { patchState, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
+import { patchState, signalStore, withComputed, withHooks, withMethods, withState } from '@ngrx/signals';
 import { TodosService } from "../services/todos.service";
 
 export type TodosFilter = 'all' | 'pending' | 'completed';
@@ -23,6 +23,7 @@ export const TodosStore = signalStore(
     withState(initialState),
     withMethods((store, todosService = inject(TodosService)) => ({
         async loadAll() {
+            console.log('loadAll');
             patchState(store, { loading: true });
             const todos = await todosService.getTodosAll();
             patchState(store, { todos, loading: false });
@@ -65,5 +66,11 @@ export const TodosStore = signalStore(
                     return todos;
             }
         })
-    }))
+    })),
+    withHooks({
+        onInit(store) {
+            console.log('onInit');
+            store.loadAll();
+        }
+    })
 );
